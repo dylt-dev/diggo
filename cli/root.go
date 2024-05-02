@@ -27,9 +27,6 @@ func createRootCommand() *cobra.Command {
 		Use: "diggo",
 		Short: "dig-like CLI",
 		Long: "A dig-like CLI that does useful things dig doesn't. Like return JSON.",
-		Run: func (cmd *cobra.Command, args []string) {
-			fmt.Println("MEAT")
-		},
 	}
 		
 	return cmd
