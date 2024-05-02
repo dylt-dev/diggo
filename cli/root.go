@@ -11,6 +11,8 @@ import (
 func Run () int {
 	rootCmd := createRootCommand()
 	rootCmd.AddCommand(cmd.CreateSrvCommand())
+	rootCmd.AddCommand(cmd.CreateCnameCommand())
+	rootCmd.AddCommand(cmd.CreateTxtCommand())
 	err := rootCmd.Execute()
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)

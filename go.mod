@@ -3,7 +3,7 @@ module github.com/dylt-dev/diggo
 go 1.22.2
 
 require (
-	github.com/dylt-dev/dylt v0.0.2
+	github.com/dylt-dev/dylt v0.0.4
 	github.com/spf13/cobra v1.8.0
 )
 

@@ -15,7 +15,7 @@ func CreateSrvCommand () *cobra.Command {
 		Short: "DNS SRV records",
 		Long: "Operations pertaining to DNS SRV records (https://www.ietf.org/rfc/rfc2782.txt)", 
 		Args: cobra.MinimumNArgs(1),
-		RunE: run,
+		RunE: runSrvCommand,
 	}
 	command.Flags().BoolP("include-ips", "i", false, "Lookup IP Addresses of SRV records")
 
@@ -23,11 +23,11 @@ func CreateSrvCommand () *cobra.Command {
 }
 
 
-func run (cmd *cobra.Command, args []string) error {
+func runSrvCommand (cmd *cobra.Command, args []string) error {
 	domain := args[0]
 	includeIps, _ := cmd.Flags().GetBool("include-ips")
-	srvs := dylt.GetSrvs(domain, includeIps)
-	jsonData, _ := json.Marshal(srvs)
+	data := dylt.GetSrvs(domain, includeIps)
+	jsonData, _ := json.Marshal(data)
 	fmt.Println(string(jsonData))
 	return nil
 }
