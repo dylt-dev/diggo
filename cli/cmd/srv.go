@@ -1,8 +1,9 @@
 package cmd
 
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
+	"os"
 
 	"github.com/spf13/cobra"
 
@@ -26,8 +27,12 @@ func CreateSrvCommand () *cobra.Command {
 func runSrvCommand (cmd *cobra.Command, args []string) error {
 	domain := args[0]
 	includeIps, _ := cmd.Flags().GetBool("include-ips")
+
 	data := dylt.GetSrvs(domain, includeIps)
-	jsonData, _ := json.Marshal(data)
+	jsonData, err := json.Marshal(data)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+	}
 	fmt.Println(string(jsonData))
 	return nil
 }
