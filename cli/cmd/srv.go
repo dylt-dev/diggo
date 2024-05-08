@@ -28,10 +28,15 @@ func runSrvCommand (cmd *cobra.Command, args []string) error {
 	domain := args[0]
 	includeIps, _ := cmd.Flags().GetBool("include-ips")
 
-	data := dylt.GetSrvs(domain, includeIps)
+	data, err := dylt.GetSrvs(domain, includeIps)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		return err
+	}
 	jsonData, err := json.Marshal(data)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
+		return err
 	}
 	fmt.Println(string(jsonData))
 	return nil
