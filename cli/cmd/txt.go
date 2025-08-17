@@ -6,7 +6,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	dylt "github.com/dylt-dev/dylt/lib"
+	dyltdns "github.com/dylt-dev/dylt/dns"
 )
 
 func CreateTxtCommand () *cobra.Command {
@@ -25,7 +25,7 @@ func CreateTxtCommand () *cobra.Command {
 
 func runTxtCommand (cmd *cobra.Command, args []string) error {
 	host := args[0]
-	data := dylt.GetTxts(host)
+	data := dyltdns.GetTxts(host)
 	jsonData, _ := json.Marshal(data)
 	fmt.Println(string(jsonData))
 	return nil

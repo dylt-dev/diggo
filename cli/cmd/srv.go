@@ -7,7 +7,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	dylt "github.com/dylt-dev/dylt/lib"
+	dyltdns "github.com/dylt-dev/dylt/dns"
 )
 
 func CreateSrvCommand () *cobra.Command {
@@ -28,7 +28,7 @@ func runSrvCommand (cmd *cobra.Command, args []string) error {
 	domain := args[0]
 	includeIps, _ := cmd.Flags().GetBool("include-ips")
 
-	data, err := dylt.GetSrvs(domain, includeIps)
+	data, err := dyltdns.GetSrvsEtcdClient(domain, includeIps)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		return err
